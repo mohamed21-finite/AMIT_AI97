@@ -3,3 +3,5 @@ pandas
 flask
 pyodbc
 pymongo
+matplotlib
+seaborn
