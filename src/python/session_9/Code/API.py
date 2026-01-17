@@ -24,10 +24,29 @@ def get_customer():
 
 
 @app.route('/add_customers', methods = ['POST'])
-def add_customer(customer_data):
-    customer_data = request.get_json()
-    result = customers_col.insert_one(customer_data)
-    return jsonify({"message": "Customer added", "customer_id": str(result.inserted_id)})
+def add_customer():
+    user_data = request.json
+    if not user_data:
+        return jsonify({"error": "No data provided"}), 400
+
+    try:
+        # Insert the document into the collection
+        result = customers_col.insert_one({
+            "Name": user_data["name"],
+            "Age": user_data["age"],
+            "Gender": user_data["gender"],
+            "Region": user_data["region"]
+        })
+        
+        # Return success message and the ID of the new document
+        return jsonify({
+            "message": "User added successfully",
+            "id": str(result.inserted_id)
+        }), 201 # 201 Created status code
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 def run_flask():
     app.run(port=5000, debug=False, use_reloader=False)
@@ -43,7 +62,8 @@ new_customer1 = {
     "region": "Riadh"   
 }
 
-response = requests.post("http://127.0.0.1:5000/add_customers",new_customer1)
+response1 = requests.post("http://127.0.0.1:5000/add_customers",json=new_customer1)
 
-response = requests.get("http://127.0.0.1:5000/customers")
-print(response.json())
+response2 = requests.get("http://127.0.0.1:5000/customers")
+print(response1.json())
+print(response2.json())

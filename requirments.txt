@@ -5,3 +5,4 @@ pyodbc
 pymongo
 matplotlib
 seaborn
+plotly
