@@ -8,4 +8,5 @@ seaborn
 plotly
 sickit-learn
 bs4
+dash
 ./AMIT_AI97/env/Scripts/Activate.ps1
