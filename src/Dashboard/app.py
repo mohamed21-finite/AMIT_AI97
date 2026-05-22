@@ -3,7 +3,7 @@ from dash import Dash, html, dcc
 import plotly.express as px
 
 
-df = pd.read_csv('city_sustainability_geospatial.csv')
+df = pd.read_csv(r'C:\Users\DELL\Desktop\AI97\AMIT_AI97\src\Dashboard\city_sustainability_geospatial.csv')
 
 app = Dash(__name__)
 

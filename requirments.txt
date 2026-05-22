@@ -6,7 +6,7 @@ pymongo
 matplotlib
 seaborn
 plotly
-sickit-learn
+scickit-learn
 bs4
 dash
 ./AMIT_AI97/env/Scripts/Activate.ps1
