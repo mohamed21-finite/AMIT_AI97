@@ -24,6 +24,8 @@ sales_trend_by_month = df.groupby(df['date_cleaned'].dt.to_period('M'))['revenue
 sales_trend_by_month['date_cleaned'] = sales_trend_by_month['date_cleaned'].astype(str)
 sales_trend_by_month_figure = px.line(sales_trend_by_month, x='date_cleaned', y='revenue')
 
+sales_by_region = px.scatter_geo(df, lat='latitude', lon='longitude', size='revenue', hover_name='region')
+
 app.title = 'Retail Analysis Dashboard'
 app.layout = html.Div([
     html.H1('Retail Analysis Dashboard'),
@@ -46,6 +48,10 @@ app.layout = html.Div([
     html.Div([
         html.H2('Sales Trend by Month'),
         dcc.Graph(figure=sales_trend_by_month_figure)
+    ]),
+    html.Div([
+        html.H2('Sales by Region'),
+        dcc.Graph(figure=sales_by_region)
     ])
 
 ])
